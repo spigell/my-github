@@ -1,0 +1,10 @@
+{
+    "name": "github",
+    "devDependencies": {
+        "@types/node": "^16.7.10"
+    },
+    "dependencies": {
+        "@pulumi/github": "*",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}
