@@ -1,6 +1,1 @@
-secretsprovider: hashivault://spigell-github
-encryptedkey: dmF1bHQ6djE6SVM1Ry9hRkJnakJEeGQzeVU4bkZYTE1aSk5hQXdLdjJXTTg3d3dVK0JMVE5xSS8zR0pHcXIvT2RLTktuZ3JveFIrSG96NGNKSUF0WnY4K28=
-config:
-  github:owner: spigell
-  github:token:
-    secure: v1:Z5N0j8MJjXhl/Drn:ZqW8A3IgiNS1st4a6zzuovPUrR4KSF0Iex9zi4F+r6mYy/xH2Xg8qyObH6Ww4lo5UBAjJaaan+g=
+{}

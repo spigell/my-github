@@ -7,6 +7,10 @@ export const repoList: github.RepositoryArgs[] = [
     template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
   },
   {
+    name: 'do-k8s-challenge-kubegres',
+    description: 'Repository for https://www.digitalocean.com/community/pages/kubernetes-challenge',
+  },
+  {
     name: 'otus_golang_hw',
     template: { owner: 'OtusGolang', repository: 'home_work' },
   },
