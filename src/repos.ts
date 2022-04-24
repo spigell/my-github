@@ -50,6 +50,7 @@ export const repoList: github.RepositoryArgs[] = [
     description: 'simple example of listener for jira',
   },
   { name: 'vltreplicator' },
+  { name: 'ycloud-playground' },
 ];
 
 for (let repo of repoList) {
