@@ -51,6 +51,9 @@ export const repoList: github.RepositoryArgs[] = [
   },
   { name: 'vltreplicator' },
   { name: 'ycloud-playground' },
+  { name: 'hh-responder',
+    description: 'cli tool for searching and applying for vacancies',
+  },
 ];
 
 for (let repo of repoList) {
