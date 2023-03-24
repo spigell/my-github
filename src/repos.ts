@@ -12,7 +12,8 @@ export const repoList: github.RepositoryArgs[] = [
   },
   {
     name: 'do-k8s-challenge-kubegres',
-    description: 'Repository for https://www.digitalocean.com/community/pages/kubernetes-challenge',
+    description:
+      'Repository for https://www.digitalocean.com/community/pages/kubernetes-challenge',
   },
   {
     name: 'otus_golang_hw',
@@ -51,10 +52,12 @@ export const repoList: github.RepositoryArgs[] = [
   },
   { name: 'vltreplicator' },
   { name: 'ycloud-playground' },
-  { name: 'hh-responder',
+  {
+    name: 'hh-responder',
     description: 'cli tool for searching and applying for vacancies',
   },
-  { name: 'my-cloud-resume',
+  {
+    name: 'my-cloud-resume',
     description: 'sources for my resume. Based on cloud resume challenge',
   },
 ];
