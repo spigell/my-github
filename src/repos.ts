@@ -54,6 +54,9 @@ export const repoList: github.RepositoryArgs[] = [
   { name: 'hh-responder',
     description: 'cli tool for searching and applying for vacancies',
   },
+  { name: 'my-cloud-resume',
+    description: 'sources for my resume. Based on cloud resume challenge',
+  },
 ];
 
 for (let repo of repoList) {
