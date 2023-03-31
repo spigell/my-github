@@ -1,6 +1,34 @@
 import * as github from '@pulumi/github';
+import * as pulumi from '@pulumi/pulumi';
+import * as stacks from './stacks';
+import { Optional } from 'utility-types';
 
-export const repoList: github.RepositoryArgs[] = [
+// Get my own id from github
+const me = github.getUser({ username: '' });
+
+const gcp = new stacks.GCPProjects();
+
+// Add custom type for github environments in repository
+// Make repository property optional
+type CustomRepositoryArgs = Optional<
+  github.RepositoryEnvironmentArgs,
+  'repository'
+>;
+type Environment = CustomRepositoryArgs & {
+  secrets?: {
+    [key: string]: pulumi.Input<string>;
+  };
+};
+
+type Repository = github.RepositoryArgs & {
+  // environments may be not configured
+  environments?: Environment[];
+  secrets?: {
+    [key: string]: pulumi.Input<string>;
+  };
+};
+
+export const repoList: Repository[] = [
   { name: 'my-github', description: 'My github account as Code' },
   {
     name: 'pulumi-k3os',
@@ -59,6 +87,32 @@ export const repoList: github.RepositoryArgs[] = [
   {
     name: 'my-cloud-resume',
     description: 'sources for my resume. Based on cloud resume challenge',
+    secrets: {
+      GOOGLE_UPLOADER_CREDENTIALS: gcp.GetRunnerPrivateKey('production'),
+    },
+    environments: [
+      {
+        environment: 'production',
+        deploymentBranchPolicy: {
+          customBranchPolicies: true,
+          protectedBranches: false,
+        },
+        reviewers: [
+          {
+            users: [me.then((me) => me.id) as unknown as pulumi.Output<number>],
+          },
+        ],
+        secrets: {
+          GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('production'),
+        },
+      },
+      {
+        environment: 'dev',
+        secrets: {
+          GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('dev'),
+        },
+      },
+    ],
   },
 ];
 
@@ -67,5 +121,36 @@ for (let repo of repoList) {
   if (!r.hasOwnProperty('hasDownloads')) r.hasDownloads = true;
   if (!r.hasOwnProperty('hasIssues')) r.hasIssues = true;
 
-  let _ = new github.Repository(r.name as string, r);
+  new github.Repository(r.name as string, r);
+  if (r.secrets) {
+    for (let [key, value] of Object.entries(r.secrets)) {
+      new github.ActionsSecret(key as string, {
+        repository: r.name as string,
+        secretName: key,
+        plaintextValue: value,
+      });
+    }
+  }
+  if (r.environments) {
+    for (let env of r.environments) {
+      env.repository = r.name as string;
+      new github.RepositoryEnvironment(
+        env.environment as string,
+        env as github.RepositoryEnvironmentArgs
+      );
+      if (env.secrets) {
+        for (let [key, value] of Object.entries(env.secrets)) {
+          new github.ActionsEnvironmentSecret(
+            `${env.environment}-${key}`.toLowerCase(),
+            {
+              environment: env.environment as string,
+              repository: r.name as string,
+              secretName: key,
+              plaintextValue: value,
+            }
+          );
+        }
+      }
+    }
+  }
 }
