@@ -104,12 +104,14 @@ export const repoList: Repository[] = [
         ],
         secrets: {
           GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('production'),
+          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('production'),
         },
       },
       {
         environment: 'dev',
         secrets: {
           GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('dev'),
+          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('dev'),
         },
       },
     ],
