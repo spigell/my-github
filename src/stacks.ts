@@ -13,7 +13,7 @@ const namespaceMap = new Map<string, string>([
 export class GCPProjects {
   private ref: pulumi.StackReference;
   constructor() {
-    this.ref = new pulumi.StackReference('spigell/gcp-projects/prod');
+    this.ref = new pulumi.StackReference('organization/my-cloud-identity/main');
 
     return this;
   }

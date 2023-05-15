@@ -1,3 +1,5 @@
-name: github
+name: my-github
 runtime: nodejs
+backend:
+  url: gs://spigell-infra-pulumi-states
 description: My github account as Code

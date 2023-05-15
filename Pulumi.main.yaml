@@ -1,0 +1,2 @@
+secretsprovider: gcpkms://projects/spigell-infra/locations/global/keyRings/spigell-infra-keyring/cryptoKeys/pulumi-key
+encryptedkey: CiQAPcyMoah8NCJSRyH52VvUoZEHz5gWCmodGlxykKk0Go+tuT4SSQAYv0dMZqHEL/OuGWHh8+ySqxfpe7Y8CN06g26b4ixoyyYiJpCiC507HqlS1b9d4tpqgDfhJImsnimZKqGnyZ1tu4EwIsxCyYo=
