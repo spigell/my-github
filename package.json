@@ -16,6 +16,6 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*": "prettier --write --skip-unknown ."
   }
 }
