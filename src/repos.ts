@@ -90,6 +90,18 @@ export const repoList: Repository[] = [
       'A way to manage my cloud tokens and cloud projects. Managed by Pulumi.',
   },
   {
+    name: 'pulumi-automation-api-apps',
+    description: 'Tools and helpers based on pulumi automation api',
+  },
+  {
+    name: 'pulumi-hcloud-kube-hetzner',
+    description:
+      'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
+    secrets: {
+      GOOGLE_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('hetzner-pulumi-runner'),
+    },
+  },
+  {
     name: 'my-cloud-resume',
     description: 'sources for my resume. Based on cloud resume challenge',
     secrets: {

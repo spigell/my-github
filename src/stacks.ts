@@ -8,6 +8,7 @@ const envMap = new Map<string, string>([
 const namespaceMap = new Map<string, string>([
   ['production', 'spigell-resume-production'],
   ['dev', 'spigell-resume-dev'],
+  ['hetzner-pulumi-runner', 'hetzner-pulumi-runner'],
 ]);
 
 export class GCPProjects {
@@ -30,7 +31,6 @@ export class GCPProjects {
 
     return outputs.apply((outputs) => {
       for (const serviceAccount of outputs['GkeServiceAccounts']) {
-        console.log(serviceAccount['namespace']);
         if (serviceAccount['namespace'] === `${namespaceMap.get(env)}`) {
           return serviceAccount['privateKey'];
         }
