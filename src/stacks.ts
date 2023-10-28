@@ -8,7 +8,6 @@ const envMap = new Map<string, string>([
 const namespaceMap = new Map<string, string>([
   ['production', 'spigell-resume-production'],
   ['dev', 'spigell-resume-dev'],
-  ['hetzner-pulumi-runner', 'hetzner-pulumi-runner'],
 ]);
 
 export class GCPProjects {
@@ -19,7 +18,22 @@ export class GCPProjects {
     return this;
   }
 
-  GetRunnerPrivateKey(env: string) {
+  GetInfraRunnerPrivateKey(email: string) {
+    const outputs = this.ref.getOutput('infraProject');
+
+    return outputs.apply((outputs) => {
+      for (const serviceAccount of outputs['pulumiServiceAccounts']) {
+        if (serviceAccount['email'] === email) {
+          return serviceAccount['privateKey'];
+        }
+      }
+      throw new Error(
+        `Could not find GKE deployer service account for ${email}`
+      );
+    });
+  }
+
+  GetResumeRunnerPrivateKey(env: string) {
     // Get GCP service account from another stack via stack reference
     const outputs = this.ref.getOutput(`${envMap.get(env)}`);
 

@@ -98,14 +98,16 @@ export const repoList: Repository[] = [
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
     secrets: {
-      GOOGLE_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('hetzner-pulumi-runner'),
+      GOOGLE_CREDENTIALS: gcp.GetInfraRunnerPrivateKey(
+        'spigell-infra-phkh-runner@spigell-infra.iam.gserviceaccount.com'
+      ),
     },
   },
   {
     name: 'my-cloud-resume',
     description: 'sources for my resume. Based on cloud resume challenge',
     secrets: {
-      GOOGLE_UPLOADER_CREDENTIALS: gcp.GetRunnerPrivateKey('production'),
+      GOOGLE_UPLOADER_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
     },
     environments: [
       {
@@ -120,14 +122,14 @@ export const repoList: Repository[] = [
           },
         ],
         secrets: {
-          GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('production'),
+          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
           GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('production'),
         },
       },
       {
         environment: 'dev',
         secrets: {
-          GOOGLE_CREDENTIALS: gcp.GetRunnerPrivateKey('dev'),
+          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('dev'),
           GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('dev'),
         },
       },
