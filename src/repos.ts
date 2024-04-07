@@ -94,6 +94,11 @@ export const repoList: Repository[] = [
     description: 'Tools and helpers based on pulumi automation api',
   },
   {
+    name: 'hh-responder-searches',
+    description: 'My searches for HeadHunter site via hh-responder',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
