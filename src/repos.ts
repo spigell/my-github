@@ -33,6 +33,7 @@ export const repoList: Repository[] = [
   {
     name: 'pulumi-k3os',
     template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
+    archived: true,
   },
   {
     name: 'pulumi-file',
@@ -68,6 +69,7 @@ export const repoList: Repository[] = [
     name: 'packer-archlinux',
     description: 'Packer template for archlinux',
     homepageUrl: 'https://app.vagrantup.com/spigell/boxes/archlinux',
+    archived: true,
   },
   {
     name: 'telegram-markdown-finder',
@@ -90,6 +92,10 @@ export const repoList: Repository[] = [
       'A way to manage my cloud tokens and cloud projects. Managed by Pulumi.',
   },
   {
+    name: 'cdk8s-ollama',
+    description: 'Construct for ollama deployments in k8s',
+  },
+  {
     name: 'pulumi-automation-api-apps',
     description: 'Tools and helpers based on pulumi automation api',
   },
@@ -99,12 +105,17 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'phkh-ollama',
+    description: 'PoC for ollama in Hetnzer',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
     secrets: {
       GOOGLE_CREDENTIALS: gcp.GetInfraRunnerPrivateKey(
-        'spigell-infra-phkh-runner@spigell-infra.iam.gserviceaccount.com'
+        'spigell-infra-phkh-runner@spigell-infra.iam.gserviceaccount.com',
       ),
     },
   },
@@ -162,7 +173,7 @@ for (let repo of repoList) {
       env.repository = r.name as string;
       new github.RepositoryEnvironment(
         env.environment as string,
-        env as github.RepositoryEnvironmentArgs
+        env as github.RepositoryEnvironmentArgs,
       );
       if (env.secrets) {
         for (let [key, value] of Object.entries(env.secrets)) {
@@ -173,7 +184,7 @@ for (let repo of repoList) {
               repository: r.name as string,
               secretName: key,
               plaintextValue: value,
-            }
+            },
           );
         }
       }

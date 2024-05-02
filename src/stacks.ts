@@ -28,7 +28,7 @@ export class GCPProjects {
         }
       }
       throw new Error(
-        `Could not find GKE deployer service account for ${email}`
+        `Could not find GKE deployer service account for ${email}`,
       );
     });
   }
