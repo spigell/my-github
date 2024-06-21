@@ -110,6 +110,11 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'pulumi-wait-for',
+    description:
+      'The Pulumi native provider for waiting for resources to be ready.',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
