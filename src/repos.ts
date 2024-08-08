@@ -110,9 +110,8 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
-    name: 'pulumi-wait-for',
-    description:
-      'The Pulumi native provider for waiting for resources to be ready.',
+    name: 'tron-auto-undelegate-bot',
+    visibility: 'private',
   },
   {
     name: 'pulumi-hcloud-kube-hetzner',
