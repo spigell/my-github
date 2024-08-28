@@ -114,6 +114,14 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'tron-account-watcher',
+    visibility: 'private',
+  },
+  {
+    name: 'my-blockchain-infra',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
