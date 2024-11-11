@@ -122,6 +122,10 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'tron-js-libs',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
@@ -130,6 +134,10 @@ export const repoList: Repository[] = [
         'spigell-infra-phkh-runner@spigell-infra.iam.gserviceaccount.com',
       ),
     },
+  },
+  {
+    name: 'pulumi-talos-cluster',
+    description: 'Create a talos cluster with pulumi!',
   },
   {
     name: 'my-cloud-resume',
