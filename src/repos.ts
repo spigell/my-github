@@ -138,6 +138,11 @@ export const repoList: Repository[] = [
   {
     name: 'pulumi-talos-cluster',
     description: 'Create a talos cluster with pulumi!',
+    secrets: {
+      GOOGLE_CREDENTIALS: gcp.GetInfraRunnerPrivateKey(
+        'spigell-infra-talos-runner@spigell-infra.iam.gserviceaccount.com',
+      ),
+    },
   },
   {
     name: 'my-cloud-resume',
@@ -181,7 +186,7 @@ for (let repo of repoList) {
   new github.Repository(r.name as string, r);
   if (r.secrets) {
     for (let [key, value] of Object.entries(r.secrets)) {
-      new github.ActionsSecret(key as string, {
+      new github.ActionsSecret(`${r.name}-${key}` as string, {
         repository: r.name as string,
         secretName: key,
         plaintextValue: value,
