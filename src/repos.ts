@@ -126,6 +126,10 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'fuel-mira-fpt-prices-bot',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
