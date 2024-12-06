@@ -126,6 +126,15 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'web3-nodejs-libs',
+    description: 'My helpers for building simple WEB3 nodeJS apps.',
+  },
+  {
+    name: 'aptos-thala-prometheus-exporter',
+    description: 'Prometheus exporter for thalalabs.xyz',
+    visibility: 'private',
+  },
+  {
     name: 'fuel-mira-fpt-prices-bot',
     visibility: 'private',
   },
