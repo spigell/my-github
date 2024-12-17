@@ -140,6 +140,14 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'fuel-mira-price-notifier',
+    visibility: 'private',
+  },
+  {
+    name: 'fuel-mira-trader',
+    visibility: 'private',
+  },
+  {
     name: 'pulumi-hcloud-kube-hetzner',
     description:
       'Optimized and Maintenance-free Kubernetes on Hetzner Cloud in one command! With Pulumi!',
