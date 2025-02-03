@@ -136,15 +136,15 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
-    name: 'fuel-mira-fpt-trade-bot',
-    visibility: 'private',
-  },
-  {
     name: 'fuel-mira-price-notifier',
     visibility: 'private',
   },
   {
     name: 'fuel-mira-trader',
+    visibility: 'private',
+  },
+  {
+    name: 'fuel-fluid-tests',
     visibility: 'private',
   },
   {
