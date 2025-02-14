@@ -132,6 +132,11 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'tem-prometheus-exporter',
+    description: 'Unofficial prometheus exporter for tem.cash infra',
+    visibility: 'private',
+  },
+  {
     name: 'fuel-mira-fpt-prices-bot',
     visibility: 'private',
   },
