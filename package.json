@@ -2,9 +2,9 @@
   "name": "github",
   "devDependencies": {
     "@types/node": "^20.12.8",
-    "prettier": "^3.2.5",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "husky": "^9.0.11"
+    "prettier": "^3.2.5"
   },
   "dependencies": {
     "@pulumi/github": "^6.2.0",
