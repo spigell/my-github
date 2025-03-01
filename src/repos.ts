@@ -145,6 +145,10 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
+    name: 'af2faf',
+    visibility: 'private',
+  },
+  {
     name: 'fuel-mira-trader',
     visibility: 'private',
   },
