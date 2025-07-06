@@ -28,65 +28,79 @@ type Repository = github.RepositoryArgs & {
   };
 };
 
-export const repoList: Repository[] = [
+const repoList: Repository[] = [
   { name: 'my-github', description: 'My github account as Code' },
   {
-    name: 'pulumi-k3os',
-    template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
-    archived: true,
-  },
-  {
-    name: 'pulumi-file',
-    archived: true,
-    template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
-  },
-  {
-    name: 'do-k8s-challenge-kubegres',
-    description:
-      'Repository for https://www.digitalocean.com/community/pages/kubernetes-challenge',
-  },
-  { name: 'sparrow-plugins', archived: true },
-  { name: 'dwm' },
-  { name: 'dotfiles' },
-  {
-    name: 'pokerchained-helper-tg-bot',
-    description: 'Unofficial bot for pokerchained (Texas holdem on EOS chain)',
-  },
-  { name: 'luscheduler' },
-  {
-    name: 'ansible-role-docker-compose-systemd',
-    description: 'Install docker-compose service as systemd unit',
-  },
-  {
-    name: 'docker-teleport',
-    description: 'Dockerfile for https://github.com/vadv/teleport',
-    homepageUrl: 'https://hub.docker.com/r/spigell/docker-teleport/',
-  },
-  {
-    name: 'packer-archlinux',
-    description: 'Packer template for archlinux',
-    homepageUrl: 'https://app.vagrantup.com/spigell/boxes/archlinux',
-    archived: true,
-  },
-  {
-    name: 'telegram-markdown-finder',
-    description:
-      'Telegram bot which return a part of markdown file by given anchor in request',
-  },
-  {
-    name: 'jira-telegram-listener',
-    description: 'simple example of listener for jira',
-  },
-  { name: 'vltreplicator' },
-  { name: 'ycloud-playground' },
-  {
-    name: 'hh-responder',
-    description: 'cli tool for searching and applying for vacancies',
+    name: 'my-images',
+    description: 'My container images for personal purposes',
   },
   {
     name: 'my-cloud-identity',
     description:
       'A way to manage my cloud tokens and cloud projects. Managed by Pulumi.',
+  },
+  {
+    name: 'my-blockchain-infra',
+    visibility: 'private',
+  },
+  {
+    name: 'my-anki-decks',
+    visibility: 'private',
+  },
+  {
+    name: 'my-openai-codex-settings',
+    visibility: 'public',
+  },
+  {
+    name: 'my-cloud-resume',
+    description: 'sources for my resume. Based on cloud resume challenge',
+    secrets: {
+      GOOGLE_UPLOADER_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
+    },
+    environments: [
+      {
+        environment: 'production',
+        deploymentBranchPolicy: {
+          customBranchPolicies: true,
+          protectedBranches: false,
+        },
+        reviewers: [
+          {
+            users: [me.then((me) => me.id) as unknown as pulumi.Output<number>],
+          },
+        ],
+        secrets: {
+          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
+          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('production'),
+        },
+      },
+      {
+        environment: 'dev',
+        secrets: {
+          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('dev'),
+          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('dev'),
+        },
+      },
+    ],
+  },
+  {
+    name: 'anki-sync',
+    description: 'A cli tool for synchronize anki decks from files',
+  },
+  {
+    name: 'anki-i-get-thais-decks',
+    description: 'Anki decks based on https://www.youtube.com/@IgetThais',
+  },
+  { name: 'dwm' },
+  { name: 'dotfiles' },
+  {
+    name: 'hh-responder',
+    description: 'a cli tool for searching and applying for vacancies',
+  },
+  {
+    name: 'codexman',
+    description: 'a cli tool for managing OpenAI settings',
+    visibility: 'private',
   },
   {
     name: 'cdk8s-ollama',
@@ -115,14 +129,6 @@ export const repoList: Repository[] = [
     visibility: 'private',
   },
   {
-    name: 'my-blockchain-infra',
-    visibility: 'private',
-  },
-  {
-    name: 'tron-js-libs',
-    visibility: 'private',
-  },
-  {
     name: 'web3-nodejs-libs',
     description: 'My helpers for building simple WEB3 nodeJS apps.',
   },
@@ -134,6 +140,11 @@ export const repoList: Repository[] = [
   {
     name: 'tem-prometheus-exporter',
     description: 'Unofficial prometheus exporter for tem.cash infra',
+    visibility: 'private',
+  },
+  {
+    name: 'euler-prometheus-exporter',
+    description: 'Unofficial prometheus exporter for EULER',
     visibility: 'private',
   },
   {
@@ -175,37 +186,70 @@ export const repoList: Repository[] = [
       ),
     },
   },
+  // Archived go below
   {
-    name: 'my-cloud-resume',
-    description: 'sources for my resume. Based on cloud resume challenge',
-    secrets: {
-      GOOGLE_UPLOADER_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
-    },
-    environments: [
-      {
-        environment: 'production',
-        deploymentBranchPolicy: {
-          customBranchPolicies: true,
-          protectedBranches: false,
-        },
-        reviewers: [
-          {
-            users: [me.then((me) => me.id) as unknown as pulumi.Output<number>],
-          },
-        ],
-        secrets: {
-          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('production'),
-          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('production'),
-        },
-      },
-      {
-        environment: 'dev',
-        secrets: {
-          GOOGLE_CREDENTIALS: gcp.GetResumeRunnerPrivateKey('dev'),
-          GKE_DEPLOYER_CREDENTIALS: gcp.GetGKEDeployerPrivateKey('dev'),
-        },
-      },
-    ],
+    name: 'pulumi-k3os',
+    template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
+    archived: true,
+  },
+  {
+    name: 'pulumi-file',
+    archived: true,
+    template: { owner: 'pulumi', repository: 'pulumi-provider-boilerplate' },
+  },
+  {
+    name: 'pulumi-codex-dynamic-provider',
+    description: 'Manage OpenAI environments with Pulumi!',
+    visibility: 'private',
+    archived: true,
+  },
+  {
+    name: 'do-k8s-challenge-kubegres',
+    description:
+      'Repository for https://www.digitalocean.com/community/pages/kubernetes-challenge',
+    archived: true,
+  },
+  { name: 'sparrow-plugins', archived: true },
+  {
+    name: 'pokerchained-helper-tg-bot',
+    description: 'Unofficial bot for pokerchained (Texas holdem on EOS chain)',
+    archived: true,
+  },
+  { name: 'luscheduler', archived: true },
+  {
+    name: 'ansible-role-docker-compose-systemd',
+    description: 'Install docker-compose service as systemd unit',
+    archived: true,
+  },
+  {
+    name: 'docker-teleport',
+    description: 'Dockerfile for https://github.com/vadv/teleport',
+    homepageUrl: 'https://hub.docker.com/r/spigell/docker-teleport/',
+    archived: true,
+  },
+  {
+    name: 'jira-telegram-listener',
+    description: 'simple example of listener for jira',
+    archived: true,
+  },
+  {
+    name: 'packer-archlinux',
+    description: 'Packer template for archlinux',
+    homepageUrl: 'https://app.vagrantup.com/spigell/boxes/archlinux',
+    archived: true,
+  },
+  {
+    name: 'telegram-markdown-finder',
+    description:
+      'Telegram bot which return a part of markdown file by given anchor in request',
+    archived: true,
+  },
+  { name: 'vltreplicator', archived: true },
+  { name: 'ycloud-playground', archived: true },
+  {
+    name: 'tron-js-libs',
+    visibility: 'private',
+    archived: true,
   },
 ];
 
